@@ -12,3 +12,6 @@ os_timezone: 'America/New_York'
 
 # Apache configuration
 apache_doc_root: '/mnt/data/web'
+
+# Wordpress configuration
+wp_install_directory: '{{ apache_doc_root }}'

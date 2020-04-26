@@ -1,0 +1,6 @@
+---
+# File: roles/install-wordpress/defaults/main.yml
+# Purpose: Default variables for install-wordpress role.
+
+wp_download_url: 'https://wordpress.org/latest.tar.gz'
+wp_install_directory: /var/www/html

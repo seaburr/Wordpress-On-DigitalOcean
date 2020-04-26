@@ -1,0 +1,16 @@
+---
+# File: roles/install-wordpress/tasks/main.yml
+# Purpose: Install and configure WordPress on a target droplet.
+
+- name: Check if WordPress has already been installed
+  stat:
+    path: '{{ wp_install_directory }}/index.php'
+  register: is_wp_installed
+
+- name: Download and extract WordPress package
+  unarchive:
+    src: '{{ wp_download_url }}'
+    dest: '{{ wp_install_directory }}'
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+  when: not is_wp_installed.stat.exists

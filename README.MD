@@ -1,7 +1,7 @@
 # Wordpress on DigitalOcean
 
 ## Purpose
-The intent of this repository is to provide entire lifecycle management of a WordPress site on DigitalOcean. This repo is part of an ongoing blog series on my website. I hope anyone out there looking for this could find this useful.
+The intent of this repository is to provide lifecycle management of a WordPress site on DigitalOcean. This repo is part of an ongoing [blog series](https://chasberndt.com) I'm working on. In time, I hope others will find this useful.
 
 ## Status
 This is very much a work-in-progress and should not be used by anyone at this point. ***Be warned!***
@@ -22,7 +22,7 @@ Below is a list of the goals of this project along with their current status. Ad
 * [future] Create managed MySQL instance via Ansible.
 * [in progress] Install and configure Apache.
 * [in progress] Install WordPress.
-* [in progress] Automate backup of WordPress site.
+* [in progress] Automatic backup of WordPress site.
 * [future] In-place upgrade of WordPress.
 * [future] Configure SSL on droplet.
 * [future] Attach droplet to load balancer.
@@ -40,6 +40,4 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE

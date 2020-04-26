@@ -12,3 +12,4 @@
     - ../roles/configure-mounts
     - ../roles/centos-base
     - ../roles/configure-apache
+    - ../roles/install-wordpress
