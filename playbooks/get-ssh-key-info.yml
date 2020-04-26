@@ -1,0 +1,13 @@
+---
+# File: playbooks/get-ssh-key-info.yml
+# Purpose: Helper playbook that can be used to fetch SSH key IDs.
+
+- hosts: localhost
+  gather_facts: true
+  vars_files:
+    - ../defaults/secrets.yml
+    - ../defaults/chasberndt.com.yml
+  tasks:
+    - name: get details
+      digital_ocean_sshkey_info:
+        oauth_token: "{{ do_api_token }}"

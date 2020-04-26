@@ -1,0 +1,8 @@
+---
+# File: roles/generate-inventory/tasks/main.yml
+# Purpose: Generate a basic inventory file.
+
+- name: Generate inventory file
+  template:
+    src: ../templates/inventory.j2
+    dest: ../hosts

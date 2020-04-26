@@ -1,0 +1,14 @@
+---
+# File: playbooks/create-infra.yml
+# Purpose: Creates droplet, block storage volume, and generates Ansible inventory file.
+
+- hosts: localhost
+  gather_facts: true
+  vars_files:
+    - ../defaults/secrets.yml
+    - ../defaults/common_vars.yml
+
+  roles:
+    - ../roles/create-droplet
+    - ../roles/create-volume
+    - ../roles/generate-inventory

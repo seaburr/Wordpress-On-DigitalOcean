@@ -1,0 +1,10 @@
+---
+# File: roles/centos-base/defaults/main.yml
+# Purpose: Default variables for centos-base role.
+
+os_timezone: ~
+
+firewalld_services_needed:
+  - 'ssh'
+  - 'http'
+  - 'https'

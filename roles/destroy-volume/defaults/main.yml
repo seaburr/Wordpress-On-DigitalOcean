@@ -1,0 +1,6 @@
+---
+# File: roles/destroy-volume/defaults/main.yml
+# Purpose: Default variables for destroy-volume role.
+
+do_droplet_region: 'nyc1'
+do_volume_name: ~

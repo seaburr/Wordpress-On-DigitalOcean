@@ -1,0 +1,11 @@
+---
+# File: roles/destroy-volume/tasks/main.yml
+# Purpose: Destroys a specified volume. DESTROYS ALL DATA ON VOLUME!! You probably don't want to run this.
+
+- name: 'Ensure storage volume {{ do_volume_name }} DOES NOT exist'
+  digital_ocean_block_storage:
+    state: absent
+    command: create
+    api_token: '{{ do_api_token }}'
+    region: '{{ do_droplet_region }}'
+    volume_name: '{{ do_volume_name }}'

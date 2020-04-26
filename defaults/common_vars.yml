@@ -1,0 +1,14 @@
+---
+# File: defaults/common_vars.yml
+# Purpose: Non-sensitive variables needed for managing DO infrastructure.
+
+# DigitalOcean configuration
+host_name: 'chasberndt.com'
+do_droplet_name: '{{ host_name }}'
+do_volume_name: 'chasberndt-com-volume'
+
+# Base OS configuration
+os_timezone: 'America/New_York'
+
+# Apache configuration
+apache_doc_root: '/mnt/data/web'

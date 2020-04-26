@@ -1,0 +1,55 @@
+---
+# File: roles/centos-base/tasks/main.yml
+# Purpose: Ensures a standard base for all CentOS 8 machines.
+
+- name: Set hostname to {{ host_name }}
+  hostname:
+    name: '{{ host_name }}'
+
+- name: Run updates
+  yum:
+    name: '*'
+    state: latest
+
+- name: Install base packages
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - firewalld
+    - tar
+    - vim
+    - curl
+    - wget
+    - chrony
+    - epel-release
+    - php-mysqlnd
+    - php-fpm
+    - php-json
+
+- name: Check timezone
+  shell: date
+  register: system_time
+
+- name: Set timezone to {{ os_timezone }}
+  shell: timedatectl set-timezone '{{ os_timezone }}'
+  when: system_time.stdout.find('UTC') != -1
+
+- name: Ensure firewall is enabled and running
+  service:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: Configure firewall services
+  action: >
+    firewalld service={{ item }} state=enabled permanent=true immediate=true
+  with_items:
+    - '{{ firewalld_services_needed }}'
+  register: firewall_config
+
+- name: Restart firewall (if needed)
+  service:
+    name: firewalld
+    state: restarted
+    enabled: true
+  when: firewall_config.changed

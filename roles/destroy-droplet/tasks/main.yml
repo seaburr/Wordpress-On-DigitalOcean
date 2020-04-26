@@ -1,0 +1,12 @@
+---
+# File: roles/destroy-droplet/tasks/main.yml
+# Purpose: Destroys target droplet (if exists).
+
+- name: 'Ensure droplet {{ do_droplet_name }} is not present'
+  digital_ocean_droplet:
+    state: absent
+    name: '{{ do_droplet_name }}'
+    unique_name: true
+    oauth_token: '{{ do_api_token }}'
+    region: 'nyc1'
+    wait_timeout: 500

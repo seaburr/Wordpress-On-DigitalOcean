@@ -1,0 +1,6 @@
+---
+# File: roles/destroy-droplet/defaults/main.yml
+# Purpose: Default variables for destroy-droplet role.
+
+do_droplet_name: ~
+do_droplet_region: 'nyc1'

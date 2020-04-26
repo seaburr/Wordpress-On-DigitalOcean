@@ -1,0 +1,7 @@
+---
+# File: roles/configure-mounts/defaults/main.yml
+# Purpose: Default variables for configure-mounts role.
+
+do_volume_disk_location: '/dev/disk/by-id/scsi-0DO_Volume_{{ do_volume_name }}'
+do_volume_mount_location: '/mnt/data'
+web_content_dir: ~

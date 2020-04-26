@@ -1,0 +1,36 @@
+---
+# File: roles/configure-apache/tasks/main.yml
+# Purpose: Installs and configures Apache.
+
+- name: Install base packages
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - httpd
+
+- name: 'Ensure {{ apache_doc_root }} is present and permissions are correct'
+  file:
+    path: '{{ apache_doc_root }}'
+    state: directory
+    mode: 'u=rwx,g=rx,o=rx'
+
+- name: 'Ensure Apache can access {{ apache_doc_root }}'
+  shell: 'chcon -R --type=httpd_sys_rw_content_t {{ apache_doc_root }}'
+
+- name: Reconfigure Apache
+  template:
+    src: ../templates/httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+    backup: true
+    force: true
+
+- name: Ensure welcome.conf is not present.
+  file:
+    path: /etc/httpd/conf.d/welcome.conf
+    state: absent
+
+- name: Ensure Apache is enabled
+  service:
+    name: httpd
+    state: restarted
+    enabled: true

@@ -1,0 +1,12 @@
+---
+# File: playbooks/destroy-droplet.yml
+# Purpose: Destroys droplet if present.
+
+- hosts: localhost
+  gather_facts: true
+  vars_files:
+    - ../defaults/secrets.yml
+    - ../defaults/common_vars.yml
+
+  roles:
+    - ../roles/destroy-droplet

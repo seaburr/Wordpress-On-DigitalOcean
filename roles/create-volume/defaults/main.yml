@@ -1,0 +1,12 @@
+---
+# File: roles/create-volume/tasks/main.yml
+# Purpose: Default variables for create-volume role.
+
+# You must provide a volume name and droplet ID. Will try to fetch this from
+# the droplet_info variable generated from create-droplet role.
+do_volume_name: ~
+do_attach_vol_to_droplet_id: '{{ droplet_info.data.droplet.id }}'
+
+# By default, will create a 5GB block storage volume in NYC1 region.
+do_droplet_region: 'nyc1'
+do_volume_size: '5'

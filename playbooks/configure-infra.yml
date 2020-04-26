@@ -1,0 +1,14 @@
+---
+# File: playbooks/configure-infra.yml
+# Purpose: Configures target droplet to run as a web server.
+
+- hosts: webserver
+  gather_facts: true
+  vars_files:
+    - ../defaults/secrets.yml
+    - ../defaults/common_vars.yml
+
+  roles:
+    - ../roles/configure-mounts
+    - ../roles/centos-base
+    - ../roles/configure-apache

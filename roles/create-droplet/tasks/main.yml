@@ -1,0 +1,16 @@
+---
+# File: roles/create-droplet/tasks/main.yml
+# Purpose: Creates a droplet by the specified name, if it does not exist.
+
+- name: 'Ensure droplet {{ do_droplet_name }} exists'
+  digital_ocean_droplet:
+    state: present
+    name: '{{ do_droplet_name }}'
+    unique_name: true
+    oauth_token: '{{ do_api_token }}'
+    size: '{{ do_droplet_size }}'
+    region: '{{ do_droplet_region }}'
+    image: '{{ do_droplet_image }}'
+    ssh_keys: '{{ do_droplet_ssh_key_id }}'
+    wait_timeout: 500
+  register: droplet_info

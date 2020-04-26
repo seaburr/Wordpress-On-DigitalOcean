@@ -1,0 +1,22 @@
+---
+# File: roles/create-volume/tasks/main.yml
+# Purpose: Creates and attaches (optional) volume to a specified droplet.
+
+- name: 'Ensure storage volume {{ do_volume_name }} exists'
+  digital_ocean_block_storage:
+    state: present
+    command: create
+    api_token: '{{ do_api_token }}'
+    region: '{{ do_droplet_region }}'
+    block_size: '{{ do_volume_size }}'
+    volume_name: '{{ do_volume_name }}'
+  register: volume_state
+
+- name: 'Ensure {{ do_volume_name }} attached to droplet ID {{ do_attach_vol_to_droplet_id }}'
+  digital_ocean_block_storage:
+    state: present
+    command: attach
+    api_token: '{{ do_api_token }}'
+    volume_name: '{{ do_volume_name }}'
+    region: '{{ do_droplet_region }}'
+    droplet_id: '{{ do_attach_vol_to_droplet_id }}'

@@ -1,0 +1,22 @@
+---
+# File: roles/configure-mounts/tasks/main.yml
+# Purpose: Configures volume storage on droplet.
+
+- name: Format volume storage (new volume)
+  filesystem:
+    fstype: ext4
+    dev: '{{ do_volume_disk_location }}'
+    force: false
+
+- name: 'Ensure mount point {{ do_volume_mount_location }} exists'
+  file:
+    path: '{{ do_volume_mount_location }}'
+    state: directory
+
+- name: 'Ensure {{ do_volume_name }} is mounted'
+  mount:
+    path: '{{ do_volume_mount_location }}'
+    src: '{{ do_volume_disk_location }}'
+    fstype: ext4
+    opts: 'defaults,nofail,discard'
+    state: mounted

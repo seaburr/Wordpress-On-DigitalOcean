@@ -1,0 +1,5 @@
+# File: hosts
+# Purpose: Bone simple inventory file generated during infrastructure provisioning.
+
+[webserver]
+{{ droplet_info.data.ip_address }} ip_address={{ droplet_info.data.ip_address }} droplet_id={{ droplet_info.data.droplet.id }} volume_name={{ do_volume_name }} ansible_ssh_common_args='-o StrictHostKeyChecking=no -o userknownhostsfile=/dev/null'
