@@ -1,0 +1,12 @@
+---
+# File: playbooks/create-database.yml
+# Purpose: Creates and configures a managed database server.
+
+- hosts: localhost
+  gather_facts: true
+  vars_files:
+    - ../defaults/secrets.yml
+    - ../defaults/common_vars.yml
+
+  roles:
+    - ../roles/create-database-server

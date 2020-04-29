@@ -22,9 +22,15 @@
     - wget
     - chrony
     - epel-release
+    - mysql
     - php-mysqlnd
     - php-fpm
     - php-json
+    - php-gd
+    - php-mbstring
+    - php-pdo
+    - php-xml
+    - php-pecl-zip
 
 - name: Check timezone
   shell: date

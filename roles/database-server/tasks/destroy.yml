@@ -1,0 +1,6 @@
+---
+# File: role/destroy-database-server/tasks/main.yml
+# Purpose: Destroy a DigitalOcean managed database server.
+
+- name: 'Ensure database server does not exist'
+  command: 'python3 /tmp/digital_ocean_database.py -a destroy -t {{ do_api_token }} -s {{ dbs_name }} -r {{ dbs_region }} -d {{ database_name }} -u {{ database_user }} -i {{ ip_address }} -o /tmp/db_configuration.json'

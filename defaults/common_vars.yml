@@ -15,3 +15,9 @@ apache_doc_root: '/mnt/data/web'
 
 # Wordpress configuration
 wp_install_directory: '{{ apache_doc_root }}'
+
+# Database configuration
+dbs_name: 'chasberndt-com-db'
+dbs_region: 'nyc1'
+database_name: 'wordpress'
+database_user: 'wpadmin'

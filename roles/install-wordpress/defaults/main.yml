@@ -3,4 +3,13 @@
 # Purpose: Default variables for install-wordpress role.
 
 wp_download_url: 'https://wordpress.org/latest.tar.gz'
-wp_install_directory: /var/www/html
+wp_salt_gen_url: 'https://api.wordpress.org/secret-key/1.1/salt/'
+wp_install_directory: '/var/www/html'
+
+# NOTE: Do not define the following variables in common_vars.yml
+# For security reasons, it's recommended that you provide a unique table prefix.
+wp_table_prefix: 'wp_'
+wp_database_name: ~
+wp_database_user: ~
+wp_database_password: ~
+wp_database_server_endpoint: ~

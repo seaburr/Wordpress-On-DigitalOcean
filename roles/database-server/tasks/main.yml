@@ -1,0 +1,24 @@
+---
+# File: role/database-server/tasks/main.yml
+# Purpose: Role for managing a DigitalOcean managed database server.
+
+- name: 'Ensure python3 is installed on droplet'
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - python3
+
+- name: 'Ensure requests module is installed on droplet'
+  command: 'pip3 install requests'
+
+- name: 'Copy database configuration script to /tmp/'
+  copy:
+    src: '../files/digital_ocean_database.py'
+    dest: '/tmp/digital_ocean_database.py'
+
+- include_tasks: '{{ db_server_action }}.yml'
+
+- name: 'Ensure database configuration script is not present'
+  file:
+    path: '/tmp/digital_ocean_database.py'
+    state: absent

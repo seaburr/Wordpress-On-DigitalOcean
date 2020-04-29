@@ -1,0 +1,11 @@
+---
+# File: role/create-database-server/defaults/main.yml
+# Purpose: Default variables for for create-database-server role.
+
+db_server_action: ~
+do_api_token: ~
+dbs_name: ~
+dbs_region: ~
+database_name: ~
+database_user: ~
+ip_address: ~

@@ -9,6 +9,8 @@ This is very much a work-in-progress and should not be used by anyone at this po
 ## Technologies Leveraged
 * Ansible (2.9)
 * Shell Scripts
+* Python 3
+* Requests
 
 ## Goals
 Below is a list of the goals of this project along with their current status. Additionally, the goal is to learn how to leverage DigitalOcean's APIs and create a fault-tolerant WordPress website with HA/DR. As this project
@@ -20,7 +22,7 @@ Below is a list of the goals of this project along with their current status. Ad
 * [done] Destroy a droplet and block storage volume.
 * [in progress] Harden droplet against common attacks.
 * [future] Create managed MySQL instance via Ansible.
-* [in progress] Install and configure Apache.
+* [done] Install and configure Apache.
 * [in progress] Install WordPress.
 * [in progress] Automatic backup of WordPress site.
 * [future] In-place upgrade of WordPress.

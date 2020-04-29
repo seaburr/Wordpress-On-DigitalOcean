@@ -2,6 +2,17 @@
 # File: playbooks/destroy-infra.yml
 # Purpose: Destroys ALL infrastructure associated to website.
 
+- hosts: webserver
+  gather_facts: true
+  vars:
+    - db_server_action: 'destroy'
+  vars_files:
+    - ../defaults/secrets.yml
+    - ../defaults/common_vars.yml
+
+  roles:
+    - ../roles/database-server
+
 - hosts: localhost
   gather_facts: true
   vars_files:

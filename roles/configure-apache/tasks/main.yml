@@ -18,6 +18,18 @@
 - name: 'Ensure Apache can access {{ apache_doc_root }}'
   shell: 'chcon -R --type=httpd_sys_rw_content_t {{ apache_doc_root }}'
 
+- name: Set httpd_can_network_connect flag on and persist
+  seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+
+- name: Set httpd_can_network_connect_db flag on and persist
+  seboolean:
+    name: httpd_can_network_connect_db
+    state: true
+    persistent: true
+
 - name: Reconfigure Apache
   template:
     src: ../templates/httpd.conf.j2
