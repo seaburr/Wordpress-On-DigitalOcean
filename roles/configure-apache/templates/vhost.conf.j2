@@ -1,0 +1,10 @@
+#
+# Installed via Ansible.
+#
+
+<VirtualHost *:80>
+    DocumentRoot "{{ apache_doc_root }}"
+    ServerName {{ apache_hostname }}
+    ServerAlias www.{{ apache_hostname }}
+
+</VirtualHost>

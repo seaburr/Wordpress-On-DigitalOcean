@@ -3,3 +3,4 @@
 # Purpose: Default variables for configure-apache role.
 
 apache_doc_root: /var/www/html
+apache_hostname: ~

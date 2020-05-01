@@ -32,6 +32,7 @@
     - php-pdo
     - php-xml
     - php-pecl-zip
+    - git
 
 - name: Check timezone
   shell: date
@@ -40,6 +41,18 @@
 - name: Set timezone to {{ os_timezone }}
   shell: timedatectl set-timezone '{{ os_timezone }}'
   when: system_time.stdout.find('UTC') != -1
+
+- name: Add /etc/chrony.conf
+  file:
+    source: '../files/crony.conf'
+    dest: /etc/chrony.conf
+    backup: true
+
+- name: Ensure chrony is enabled and running
+  service:
+    name: chrony
+    state: started
+    enabled: true
 
 - name: Ensure firewall is enabled and running
   service:

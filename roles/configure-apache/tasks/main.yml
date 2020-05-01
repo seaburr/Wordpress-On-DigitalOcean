@@ -36,6 +36,11 @@
     dest: /etc/httpd/conf/httpd.conf
     backup: true
 
+- name: Add HTTP/80 vhost file
+  template: ../templates/vhost.conf.j2
+  dest: '{{ apache_hostname }}.conf'
+  backup: true
+
 - name: Ensure welcome.conf is not present
   file:
     path: /etc/httpd/conf.d/welcome.conf

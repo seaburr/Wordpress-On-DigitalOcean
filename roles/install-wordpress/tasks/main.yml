@@ -57,10 +57,22 @@
     path: '/tmp/wp_salts'
     state: absent
 
+- name: Configure permissions on directories
+  file:
+    path: '{{ wp_install_directory }}'
+    state: directory
+    recurse: true
+    owner: 'apache'
+    group: 'apache'
+    mode: '0750'
+
 - name: Create wp-config.php
   template:
     src: '../templates/wp-config.php.j2'
     dest: '{{ wp_install_directory }}/wp-config.php'
+    owner: 'apache'
+    group: 'apache'
+    mode: '0400'
   when: not is_wp_installed.stat.exists
 
 - name: Create daily backup script

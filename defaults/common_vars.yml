@@ -9,6 +9,7 @@ do_volume_name: 'chasberndt-com-volume'
 
 # Apache configuration
 apache_doc_root: '/mnt/data/web'
+apache_hostname: '{{ host_name }}'
 
 # Database configuration
 dbs_name: 'chasberndt-com-db'
