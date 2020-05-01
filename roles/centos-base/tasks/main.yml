@@ -23,6 +23,7 @@
     - chrony
     - epel-release
     - mysql
+    - php
     - php-mysqlnd
     - php-fpm
     - php-json

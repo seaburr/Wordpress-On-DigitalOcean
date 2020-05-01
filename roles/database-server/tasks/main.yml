@@ -9,7 +9,8 @@
     - python3
 
 - name: 'Ensure requests module is installed on droplet'
-  command: 'pip3 install requests'
+  pip:
+    name: requests
 
 - name: 'Copy database configuration script to /tmp/'
   copy:

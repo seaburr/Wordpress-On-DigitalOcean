@@ -2,7 +2,7 @@
 # File: roles/configure-apache/tasks/main.yml
 # Purpose: Installs and configures Apache.
 
-- name: Install base packages
+- name: Ensure Apache is installed
   action: >
     {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
   with_items:

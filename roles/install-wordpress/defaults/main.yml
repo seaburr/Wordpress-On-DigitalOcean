@@ -5,6 +5,9 @@
 wp_download_url: 'https://wordpress.org/latest.tar.gz'
 wp_salt_gen_url: 'https://api.wordpress.org/secret-key/1.1/salt/'
 wp_install_directory: '/var/www/html'
+wp_backup_directory: '/tmp'
+wp_database_json_config: '/tmp/db_configuration.json'
+wp_database_server_port: '25060' # default is 3306 or 25060 (SSL)
 
 # NOTE: Do not define the following variables in common_vars.yml
 # For security reasons, it's recommended that you provide a unique table prefix.

@@ -7,17 +7,16 @@ host_name: 'chasberndt.com'
 do_droplet_name: '{{ host_name }}'
 do_volume_name: 'chasberndt-com-volume'
 
-# Base OS configuration
-os_timezone: 'America/New_York'
-
 # Apache configuration
 apache_doc_root: '/mnt/data/web'
 
-# Wordpress configuration
-wp_install_directory: '{{ apache_doc_root }}'
-
 # Database configuration
 dbs_name: 'chasberndt-com-db'
-dbs_region: 'nyc1'
 database_name: 'wordpress'
 database_user: 'wpadmin'
+
+# Wordpress configuration
+wp_install_directory: '{{ apache_doc_root }}'
+wp_backup_directory: '/mnt/data/backups/'
+wp_database_name: '{{ database_name }}'
+wp_database_user: doadmin

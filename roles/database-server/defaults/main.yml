@@ -5,7 +5,7 @@
 db_server_action: ~
 do_api_token: ~
 dbs_name: ~
-dbs_region: ~
+dbs_region: nyc1
 database_name: ~
 database_user: ~
 ip_address: ~

@@ -2,7 +2,7 @@
 # File: roles/centos-base/defaults/main.yml
 # Purpose: Default variables for centos-base role.
 
-os_timezone: ~
+os_timezone: 'America/New_York'
 
 firewalld_services_needed:
   - 'ssh'

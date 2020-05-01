@@ -17,6 +17,22 @@
     path: '{{ wp_install_directory }}/wp-config.php'
   register: is_wp_installed
 
+- name: Get database configuration
+  command: 'cat {{ wp_database_json_config }}'
+  register: db_config
+
+- set_fact:
+    database: '{{ db_config.stdout | from_json }}'
+
+- set_fact:
+    wp_database_server_endpoint: '{{ database.databases[0].connection.host }}'
+
+- set_fact:
+    wp_database_password: '{{ database.databases[0].connection.password }}'
+
+- set_fact:
+    wp_database_user: 'doadmin'
+
 - name: Download and extract WordPress package
   unarchive:
     src: '{{ wp_download_url }}'
@@ -46,3 +62,9 @@
     src: '../templates/wp-config.php.j2'
     dest: '{{ wp_install_directory }}/wp-config.php'
   when: not is_wp_installed.stat.exists
+
+- name: Create daily backup script
+  template:
+    src: '../templates/backup-wordpress.j2'
+    dest: '/etc/cron.daily/backup-wordpress'
+    mode: '0700'
