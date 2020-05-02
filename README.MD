@@ -20,16 +20,16 @@ Below is a list of the goals of this project along with their current status. Ad
 * [done] Attach a block storage volume to a droplet.
 * [done] Replace droplet and re-attach block storage volume.
 * [done] Destroy a droplet and block storage volume.
-* [in progress] Harden droplet against common attacks.
-* [future] Create managed MySQL instance via Ansible.
+* [done] Create managed MySQL instance via Ansible.
 * [done] Install and configure Apache.
-* [in progress] Install WordPress.
+* [done] Install WordPress.
+* [done] In-place upgrade of WordPress.
 * [in progress] Automatic backup of WordPress site.
-* [future] In-place upgrade of WordPress.
-* [future] Configure SSL on droplet.
+* [in progress] Harden droplet against common attacks.
+* [in progress] Configure SSL on droplet.
+* [in progress] Configure monitoring.
 * [future] Attach droplet to load balancer.
 * [future] Configure SSL on load balancer.
-* [future] Configure monitoring.
 * [future] Configure HA WordPress.
 
 ## Contribution
