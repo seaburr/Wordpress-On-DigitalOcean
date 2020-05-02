@@ -6,12 +6,20 @@
   hostname:
     name: '{{ host_name }}'
 
+- name: Create non-root user
+  user:
+    name: '{{ base_user }}'
+    group: '{{ base_user_group }}'
+    create_home: true
+    password: '{{ base_password }}'
+  when: base_user is defined
+
 - name: Run updates
   yum:
     name: '*'
     state: latest
 
-- name: Install base packages
+- name: Install useful base packages
   action: >
     {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
   with_items:
@@ -22,17 +30,9 @@
     - wget
     - chrony
     - epel-release
-    - mysql
-    - php
-    - php-mysqlnd
-    - php-fpm
-    - php-json
-    - php-gd
-    - php-mbstring
-    - php-pdo
-    - php-xml
-    - php-pecl-zip
     - git
+    - mtr
+    - ncdu
 
 - name: Check timezone
   shell: date
@@ -44,13 +44,13 @@
 
 - name: Add /etc/chrony.conf
   file:
-    source: '../files/crony.conf'
+    src: '../files/crony.conf'
     dest: /etc/chrony.conf
     backup: true
 
 - name: Ensure chrony is enabled and running
   service:
-    name: chrony
+    name: chronyd
     state: started
     enabled: true
 

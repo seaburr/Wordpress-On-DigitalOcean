@@ -12,6 +12,21 @@
   shell: update-ca-trust
   when: do_cert_added.changed
 
+- name: Install packages required to run WordPress
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - mysql
+    - php
+    - php-mysqlnd
+    - php-fpm
+    - php-json
+    - php-gd
+    - php-mbstring
+    - php-pdo
+    - php-xml
+    - php-pecl-zip
+
 - name: Check if WordPress has already been installed
   stat:
     path: '{{ wp_install_directory }}/wp-config.php'

@@ -1,0 +1,8 @@
+---
+# File: roles/floating-ip/tasks/main.yml
+# Purpose: Managing DO floating IP resources
+
+- name: Get info about floating IPs
+  digital_ocean_floating_ip_info:
+    oauth_token: '{{ do_api_token }}'
+  register: result
