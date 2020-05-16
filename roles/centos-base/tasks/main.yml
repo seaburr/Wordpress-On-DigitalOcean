@@ -33,6 +33,14 @@
     - git
     - mtr
     - ncdu
+    - htop
+
+- name: Install useful EPEL packages
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - screen
+    - fail2ban
 
 - name: Check timezone
   shell: date
@@ -73,3 +81,15 @@
     state: restarted
     enabled: true
   when: firewall_config.changed
+
+- name: Copy fail2ban configuration file
+  file:
+    src: '../files/jail.local'
+    dest: '/etc/fail2ban/jail.local'
+    backup: true
+
+- name: Ensure fail2ban is enabled and running
+    service:
+      name: fail2ban
+      state: started
+      enabled: true

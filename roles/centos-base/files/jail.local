@@ -1,0 +1,9 @@
+[DEFAULT]
+bantime  = 21600
+findtime  = 300
+maxretry = 5
+banaction = iptables-multiport
+backend = systemd
+
+[sshd]
+enabled = true
