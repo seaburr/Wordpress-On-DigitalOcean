@@ -13,6 +13,7 @@
   roles:
     - ../roles/configure-mounts
     - ../roles/centos-base
+    - ../roles/create-swap
     - ../roles/configure-apache
     - ../roles/database-server
     - ../roles/install-wordpress

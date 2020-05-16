@@ -1,0 +1,7 @@
+---
+# File: roles/create-swap/defaults/main.yml
+# Purpose: Default variables for create-swap role.
+
+
+swap_location: '/swap'
+swap_size_in_gb: '2G'

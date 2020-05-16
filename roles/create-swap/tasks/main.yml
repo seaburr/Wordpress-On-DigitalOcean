@@ -1,0 +1,38 @@
+---
+# File: roles/create-swap/tasks/main.yml
+# Purpose: Creates swap space. DigitalOcean droplets have no swap space by default.
+
+- name: 'Check if swap file exists at {{ swap_location }}'
+  stat:
+    path: '{{ swap_location }}'
+  register: swapfile
+
+- name: 'Create {{ swap_size_in_gb }} file at {{ swap_location }}'
+  command: 'fallocate -l {{ swap_size_in_gb }} {{ swap_locaton }}'
+  become: true
+  when: swapfile.stat.exists == false
+
+- name: Ensure permissions are correct on swap
+  file:
+    path: '{{ swap_location }}'
+    owner: root
+    group: root
+    mode: 0600
+
+- name: 'Set {{ swap_location }} as swap space'
+  command: 'mkswap {{ swap_location }}'
+  become: true
+  when: swapfile.stat.exists == false
+
+- name: 'Run swapon on {{ swap_location }}'
+  command: 'swapon {{ swap_location }}'
+  become: true
+  when: swapfile.stat.exists == false
+
+- name: Configure mount so swap persists reboot
+  mount:
+    name: none
+    src: '{{ swap_location }}'
+    fstype: swap
+    opts: sw
+    state: present
