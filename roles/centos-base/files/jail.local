@@ -7,3 +7,35 @@ backend = systemd
 
 [sshd]
 enabled = true
+
+[apache]
+enabled  = true
+port     = http,https
+filter   = apache-auth
+logpath  = /var/log/httpd/*error.log
+maxretry = 3
+findtime = 600
+
+[apache-noscript]
+enabled  = true
+port     = http,https
+filter   = apache-noscript
+logpath  = /var/log/httpd/*error.log
+maxretry = 3
+findtime = 600
+
+[apache-overflows]
+enabled  = true
+port     = http,https
+filter   = apache-overflows
+logpath  = /var/log/httpd/*error.log
+maxretry = 2
+findtime = 600
+
+[apache-badbots]
+enabled  = true
+port     = http,https
+filter   = apache-badbots
+logpath  = /var/log/httpd/*error.log
+maxretry = 2
+findtime = 600

@@ -8,6 +8,7 @@
   with_items:
     - httpd
     - mod_ssl
+    - mod_security
 
 - name: 'Ensure {{ apache_doc_root }} is present and permissions are correct'
   file:
@@ -46,6 +47,12 @@
   file:
     path: /etc/httpd/conf.d/welcome.conf
     state: absent
+
+- name: Copy mod_security configuration file
+  file:
+    src: '../files/mod_security.conf'
+    dest: '/etc/httpd/conf.d/mod_security.conf'
+    backup: true
 
 - name: Ensure Apache is enabled
   service:
