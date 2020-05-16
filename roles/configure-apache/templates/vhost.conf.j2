@@ -1,10 +1,13 @@
 #
 # Installed via Ansible.
 #
-
 <VirtualHost *:80>
     DocumentRoot "{{ apache_doc_root }}"
     ServerName {{ apache_hostname }}
     ServerAlias www.{{ apache_hostname }}
 
+    RewriteEngine on
+    RewriteCond %{SERVER_NAME} =www.chasberndt.com [OR]
+    RewriteCond %{SERVER_NAME} =chasberndt.com
+    RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
