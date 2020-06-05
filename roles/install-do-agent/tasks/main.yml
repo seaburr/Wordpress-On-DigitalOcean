@@ -1,0 +1,23 @@
+---
+# File: roles/install-do-agent/tasks/main.yml
+# Purpose installs and/or updates DigitalOcean monitoring agent.
+
+- name: Download do-agent repo installation script
+  get_url:
+    url: 'https://repos.insights.digitalocean.com/install.sh'
+    dest: '/tmp/do-install.sh'
+    mode: '0755'
+
+- name: Run do-agent repo installation script
+  shell: 'cd /tmp/ && ./do-install.sh'
+
+- name: Ensure do-agent is installed and on the latest version
+  dnf:
+    name: do-agent
+    state: latest
+
+- name: Ensure do-agent is running
+  service:
+    name: do-agent
+    state: started
+    enabled: true
