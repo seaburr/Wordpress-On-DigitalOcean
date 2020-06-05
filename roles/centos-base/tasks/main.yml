@@ -89,7 +89,7 @@
     backup: true
 
 - name: Ensure fail2ban is enabled and running
-    service:
-      name: fail2ban
-      state: started
-      enabled: true
+  service:
+    name: fail2ban
+    state: started
+    enabled: true
