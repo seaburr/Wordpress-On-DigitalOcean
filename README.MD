@@ -13,7 +13,7 @@ This is very much a work-in-progress and should not be used by anyone at this po
 * Requests
 
 ## Goals
-Below is a list of the goals of this project along with their current status. Additionally, the goal is to learn how to leverage DigitalOcean's APIs and create a fault-tolerant WordPress website with HA/DR. As this project
+Below is a list of the goals of this project along with their current status. Additionally, the goal is to learn how to leverage DigitalOcean's APIs and create a fault-tolerant WordPress website with HA/DR.
 
 * [done] Create a droplet via Ansible.
 * [done] Create a block storage volume via Ansible.
@@ -24,10 +24,10 @@ Below is a list of the goals of this project along with their current status. Ad
 * [done] Install and configure Apache.
 * [done] Install WordPress.
 * [done] In-place upgrade of WordPress.
-* [in progress] Automatic backup of WordPress site.
-* [in progress] Harden droplet against common attacks.
-* [in progress] Configure SSL on droplet.
-* [in progress] Configure monitoring.
+* [done] Automatic backup of WordPress site.
+* [done] Harden droplet against common attacks.
+* [done] Configure SSL on droplet.
+* [done] Configure monitoring.
 * [future] Attach droplet to load balancer.
 * [future] Configure SSL on load balancer.
 * [future] Configure HA WordPress.
