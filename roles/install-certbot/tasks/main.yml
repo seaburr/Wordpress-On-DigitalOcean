@@ -1,0 +1,24 @@
+---
+# File: roles/install-cerbot/tasks/main.yml
+# Purpose: Installs EFF's certbot tool for generating and managing SSL certificates.
+
+- name: Ensure EPEL repository is enabled
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - epel-release
+
+- name: Ensure certbot is installed
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - certbot
+    - python3-certbot-apache
+
+- name: Ensure cron job is configured to perform automatic renewals
+  cron:
+    name: 'certbot renewal'
+    job: echo "python -c 'import random; import time; time.sleep(random.random() * 3600)' && certbot renew -q"
+    cronfile: certbot_ssl_renewal
+    special_time: weekly
+    state: present

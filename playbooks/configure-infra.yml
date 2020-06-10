@@ -16,5 +16,6 @@
     - ../roles/install-do-agent
     - ../roles/create-swap
     - ../roles/configure-apache
+    - ../roles/install-certbot
     - ../roles/database-server
     - ../roles/install-wordpress
