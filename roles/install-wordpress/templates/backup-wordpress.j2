@@ -44,7 +44,7 @@ mkdir {{ wp_backup_directory }}/sitedump/db/
 mkdir {{ wp_backup_directory }}/sitedump/exportscript/
 
 echo "**	Getting list of installed applications."
-yum list installed > {{ wp_backup_directory }}/sitedump/serverconfig/installed-packages.txt
+dnf list installed > {{ wp_backup_directory }}/sitedump/serverconfig/installed-packages.txt
 
 echo "**	Getting server specifications."
 cat /proc/cpuinfo > {{ wp_backup_directory }}/sitedump/serverconfig/cpu-info.txt
@@ -71,7 +71,7 @@ echo "**	Exporting DB."
 mysqldump -h {{ wp_database_server_endpoint }} -P {{ wp_database_server_port }} -u {{ wp_database_user }} -p{{ wp_database_password }} {{ wp_database_name }}  > {{ wp_backup_directory }}/sitedump/db/blog_db.sql
 
 echo "**	Grabbing export script."
-cp /etc/cron.daily/exportsite {{ wp_backup_directory }}/sitedump/exportscript/
+cp /etc/cron.daily/backup-wordpress {{ wp_backup_directory }}/sitedump/exportscript/
 
 echo "**	Archiving site."
 cd {{ wp_backup_directory }}/sitedump/ && tar -czf ../sitedump.tar.gz *
