@@ -9,4 +9,4 @@
     - ../defaults/common_vars.yml
 
   roles:
-    - ../roles/create-database-server
+    - ../roles/database-server

@@ -20,5 +20,5 @@
     - ../defaults/common_vars.yml
 
   roles:
-    - ../roles/destroy-droplet
     - ../roles/destroy-volume
+    - ../roles/destroy-droplet

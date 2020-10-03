@@ -81,6 +81,11 @@
     enabled: true
   when: firewall_config.changed
 
+- name: Copy apache-block-scan-bots.conf
+  copy:
+    src: '../files/apache-block-scan-bots.conf'
+    dest: '/etc/fail2ban/filter.d/apache-block-scan-bots.conf'
+
 - name: Copy fail2ban configuration file
   copy:
     src: '../files/jail.local'

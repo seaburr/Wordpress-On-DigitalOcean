@@ -40,16 +40,14 @@
     database: '{{ db_config.stdout | from_json }}'
 
 - set_fact:
-    wp_database_server_endpoint: '{{ database.databases[0].connection.host }}'
+    wp_database_server_endpoint: '{{ database.database_host }}'
 
 - set_fact:
-    wp_database_server_port: '{{ database.databases[0].connection.port }}'
+    wp_database_server_port: '{{ database.database_port }}'
 
 - set_fact:
-    wp_database_password: '{{ database.databases[0].connection.password }}'
+    wp_database_password: '{{ database.database_password }}'
 
-- set_fact:
-    wp_database_user: 'doadmin'
 
 - name: Download and extract WordPress package
   unarchive:
