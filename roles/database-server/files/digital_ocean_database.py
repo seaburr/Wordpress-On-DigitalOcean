@@ -24,6 +24,7 @@ import requests
 import logging as log
 from time import sleep
 import argparse
+import io
 
 
 logging_format = '%(asctime)s - %(levelname)s - %(filename)s - %(funcName)s - %(message)s'
@@ -111,6 +112,12 @@ class DODatabase(object):
         content = json.loads(content)
         return content
 
+    def get_dbs_info(self):
+        log.info('Getting database information.')
+        status, content = self.api_call(f'{self.api_endpoint}/databases/{self.get_database_id()}', 'GET', self.do_api_token)
+        content = json.loads(content)
+        return content
+
     def get_database_id(self):
         content = self.get_database_info()
         for database_server in content['databases']:
@@ -186,11 +193,26 @@ class DODatabase(object):
         return self.get_database_info()
 
     def info(self):
-        log.info('Getting information about database server.')
-        return self.get_database_info()
+        return self.get_dbs_info()
 
     def friendly_output(self):
-        return json.dumps(self.get_database_info())
+        return json.dumps(self.get_dbs_info())
+
+    def get_ansible_friendly_output(self):
+        db_info = self.get_dbs_info()
+        db_connection = db_info['database']['connection']['host']
+        db_port = db_info['database']['connection']['port']
+        for user in db_info['database']['users']:
+            if user['name'] == self.db_user:
+                wp_db_password = user['password']
+
+        ansible_info = {
+            'database_user': self.db_user,
+            'database_password': wp_db_password,
+            'database_host': db_connection,
+            'database_port': db_port
+                        }
+        return json.dumps(ansible_info)
 
 
 def main():
@@ -209,13 +231,15 @@ def main():
     database = DODatabase(args.action, args.token, args.server_name, args.region, args.database_user,
                           args.database_name, args.allowed_ip)
 
-    if args.output is None:
-        print(database.friendly_output())
-    else:
-        with open(args.output, 'w') as out_file:
-            out_file.write(database.friendly_output())
+    if args.action == 'create':
+        if args.output is None:
+            print(database.friendly_output())
+        else:
+            with io.open(args.output, 'w', encoding='utf-8') as out_file:
+                out_file.write(database.get_ansible_friendly_output())
 
     exit(0)
+
 
 if __name__ == '__main__':
     main()

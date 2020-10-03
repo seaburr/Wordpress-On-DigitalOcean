@@ -12,7 +12,7 @@ enabled = true
 enabled  = true
 port     = http,https
 filter   = apache-auth
-logpath  = /var/log/httpd/*error.log
+logpath  = /var/log/httpd/error_log
 maxretry = 3
 findtime = 600
 
@@ -20,7 +20,7 @@ findtime = 600
 enabled  = true
 port     = http,https
 filter   = apache-noscript
-logpath  = /var/log/httpd/*error.log
+logpath  = /var/log/httpd/error_log
 maxretry = 3
 findtime = 600
 
@@ -28,7 +28,7 @@ findtime = 600
 enabled  = true
 port     = http,https
 filter   = apache-overflows
-logpath  = /var/log/httpd/*error.log
+logpath  = /var/log/httpd/error_log
 maxretry = 2
 findtime = 600
 
@@ -36,6 +36,14 @@ findtime = 600
 enabled  = true
 port     = http,https
 filter   = apache-badbots
-logpath  = /var/log/httpd/*error.log
+logpath  = /var/log/httpd/error_log
 maxretry = 2
+findtime = 600
+
+[apache-block-scan-bots]
+enabled = true
+port = http,https
+filter = apache-block-scan-bots
+logpath  = /var/log/httpd/access_log
+maxretry = 5
 findtime = 600
