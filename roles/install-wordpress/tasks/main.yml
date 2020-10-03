@@ -43,6 +43,9 @@
     wp_database_server_endpoint: '{{ database.databases[0].connection.host }}'
 
 - set_fact:
+    wp_database_server_port: '{{ database.databases[0].connection.port }}'
+
+- set_fact:
     wp_database_password: '{{ database.databases[0].connection.password }}'
 
 - set_fact:
@@ -90,8 +93,17 @@
     mode: '0400'
   when: not is_wp_installed.stat.exists
 
+- name: 'Ensure Apache can access {{ wp_install_directory }}'
+  shell: 'chcon -t httpd_sys_rw_content_t {{ wp_install_directory }} -R'
+
 - name: Create daily backup script
   template:
     src: '../templates/backup-wordpress.j2'
     dest: '/etc/cron.daily/backup-wordpress'
     mode: '0700'
+
+- name: Ensure Apache is restarted
+  service:
+    name: httpd
+    state: restarted
+    enabled: true

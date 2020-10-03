@@ -6,7 +6,7 @@
 do_droplet_name: ~
 do_droplet_ssh_key_id: ~
 
-# By default, a small ($5/mo.) CentOS 8 droplet in the NYC region will be deployed.
-do_droplet_size: '1gb'
+# By default, a small ($10/mo.) CentOS 8 droplet in the NYC1 region will be deployed.
+do_droplet_size: '2gb'
 do_droplet_region: 'nyc1'
 do_droplet_image: 'centos-8-x64'

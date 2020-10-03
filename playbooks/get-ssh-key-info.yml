@@ -6,7 +6,6 @@
   gather_facts: true
   vars_files:
     - ../defaults/secrets.yml
-    - ../defaults/chasberndt.com.yml
   tasks:
     - name: get details
       digital_ocean_sshkey_info:

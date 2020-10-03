@@ -8,5 +8,5 @@
     name: '{{ do_droplet_name }}'
     unique_name: true
     oauth_token: '{{ do_api_token }}'
-    region: 'nyc1'
+    region: '{{ do_droplet_region }}'
     wait_timeout: 500

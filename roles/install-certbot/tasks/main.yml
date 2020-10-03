@@ -19,6 +19,7 @@
   cron:
     name: 'certbot renewal'
     job: echo "python -c 'import random; import time; time.sleep(random.random() * 3600)' && certbot renew -q"
-    cronfile: certbot_ssl_renewal
+    cron_file: certbot_ssl_renewal
+    user: root
     special_time: weekly
     state: present

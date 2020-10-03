@@ -8,7 +8,7 @@
   register: swapfile
 
 - name: 'Create {{ swap_size_in_gb }} file at {{ swap_location }}'
-  command: 'fallocate -l {{ swap_size_in_gb }} {{ swap_locaton }}'
+  command: 'fallocate -l {{ swap_size_in_gb }} {{ swap_location }}'
   become: true
   when: swapfile.stat.exists == false
 
