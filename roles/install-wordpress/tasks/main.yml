@@ -26,6 +26,23 @@
     - php-pdo
     - php-xml
     - php-pecl-zip
+    - ImageMagick
+
+- name: Replace configuration file for php-fpm to reduce memory consumption
+  copy:
+    src: '../files/www.conf'
+    dest: '/etc/php-fpm.d/www.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: phpfpm_config
+
+- name: Restart php-fpm
+  service:
+    name: php-fpm
+    state: restarted
+    enabled: true
+  when: phpfpm_config.changed
 
 - name: Check if WordPress has already been installed
   stat:
