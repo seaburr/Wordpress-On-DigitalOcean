@@ -65,7 +65,6 @@
 - set_fact:
     wp_database_password: '{{ database.database_password }}'
 
-
 - name: Download and extract WordPress package
   unarchive:
     src: '{{ wp_download_url }}'
