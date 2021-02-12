@@ -11,6 +11,9 @@ do_volume_name: 'chasberndt-com-volume'
 apache_doc_root: '/mnt/data/web'
 apache_hostname: '{{ host_name }}'
 
+# Certbot configuration
+certbot_domain: '{{ host_name }}'
+
 # Database configuration
 dbs_name: 'chasberndt-com-db'
 database_name: 'wordpress'
@@ -20,4 +23,4 @@ database_user: 'wpadmin'
 wp_install_directory: '{{ apache_doc_root }}'
 wp_backup_directory: '/mnt/data/backups/'
 wp_database_name: '{{ database_name }}'
-wp_database_user: 'wpadmin'
+wp_database_user: '{{ database_user }}'

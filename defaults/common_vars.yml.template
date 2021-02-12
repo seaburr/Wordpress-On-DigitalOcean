@@ -1,0 +1,27 @@
+---
+# File: defaults/common_vars.yml.template
+# Purpose: Non-sensitive variables needed for managing DO infrastructure.
+# THIS IS A TEMPLATE FILE.
+
+# DigitalOcean configuration
+host_name: ~                          # Droplet hostname
+do_droplet_name: '{{ host_name }}'    # Droplet name - Default: host_name
+do_volume_name: ~                     # Droplet attached volume name
+
+# Apache configuration
+apache_doc_root: '/mnt/data/web'      # Location of Wordpress install
+apache_hostname: '{{ host_name }}'    # Apache hostname for HTTP/HTTPS configuration
+
+# Certbot configuration
+certbot_domain: '{{ host_name }}'     # Hostname for SSL certificate
+
+# Database configuration
+dbs_name: ~                            # Desired name of MySQL database server
+database_name: ~                       # Desired name of MySQL database
+database_user: ~                       # Desired name of database user
+
+# Wordpress configuration
+wp_install_directory: '{{ apache_doc_root }}'         # Default: Apache doc root
+wp_backup_directory: '/mnt/data/backups/'             # Location where daily backup tars should go
+wp_database_name: '{{ database_name }}'               # Wordpress database name - Default: Same as above.
+wp_database_user: '{{ database_user }}'               # Wordpress database user - Default: Same as above.

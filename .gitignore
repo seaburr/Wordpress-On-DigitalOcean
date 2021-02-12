@@ -142,6 +142,7 @@ dmypy.json
 
 # Misc Files
 defaults/secrets.yml
+defaults/common_vars.yml
 hosts
 .idea/
 venv/
