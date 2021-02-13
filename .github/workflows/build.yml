@@ -24,8 +24,8 @@ jobs:
 
       - name: Generate configuration files
         run: |
-          echo $COMMON_VARS_YML > $GITHUB_WORKSPACE/defaults/common_vars.yml
-          echo $SECRETS_YML > $GITHUB_WORKSPACE/defaults/secrets.yml
+          printf "${{ secrets.COMMON_VARS_YML }}" > $GITHUB_WORKSPACE/defaults/common_vars.yml
+          printf "${{ secrets.SECRETS_YML }}" > $GITHUB_WORKSPACE/defaults/secrets.yml
 
       - name: Run build
         run: |
