@@ -22,5 +22,13 @@ jobs:
           sudo apt update -y
           sudo apt install ansible -y
 
+      - name: Generate configuration files
+        run: |
+          echo $COMMON_VARS_YML > $GITHUB_WORKSPACE/defaults/common_vars.yml
+          echo $SECRETS_YML > $GITHUB_WORKSPACE/defaults/secrets.yml
+
       - name: Run build
-        run: cd $GITHUB_WORKSPACE/playbooks && ./configure-site.sh
+        run: |
+          cd $GITHUB_WORKSPACE/playbooks && ansible-playbook create-infra.yml -v
+          sleep 30
+          cd $GITHUB_WORKSPACE/playbooks && ansible-playbook -i ../hosts destroy-infra.yml -v
